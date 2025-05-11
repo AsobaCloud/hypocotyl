@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypocotyl | Web3 Energy Evolution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-green: #00E676;
+            --secondary-green: #00C853;
+            --primary-blue: #2979FF;
+            --secondary-blue: #304FFE;
+            --accent-gold: #FFD54F;
+            --dark-bg: #000000;
+            --dark-card: #1E1E1E;
+            --light-text: #FFFFFF;
+            --muted-text: #B0BEC5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        body {
+            background-color: #000000;
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar.scrolled {
+            padding: 1rem 0;
+            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .navbar-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-link:hover {
+            color: var(--primary-green);
+        }
+        
+        .navbar-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section - MODIFIED */
+		.hero {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			position: relative;
+			background: url('hero12.webp');
+			overflow: hidden;
+}
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+        
+        /* Removed particle-overlay and network-grid */
+        
+        .hero-grid {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .hero-content {
+            grid-column: 1;
+            padding-left: 10%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+			font-size: 6rem;
+			letter-spacing: 0.5rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+			background: linear-gradient(to right, var(--primary-green) 0%, var(--primary-blue) 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			color: transparent;
+			
+			/* No padding */
+			text-transform: uppercase;
+			
+			/* Add display property to control sizing */
+			display: inline-block;
+		}
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            color: var(--muted-text);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Cards Section */
+        .cards-section {
+            padding: 8rem 0;
+            background: var(--dark-bg);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+            font-weight: 600;
+        }
+        
+        .section-header p {
+            color: var(--muted-text);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* CoinLedger Style Feature Cards */
+        .feature-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .feature-content {
+            flex: 1;
+            padding-right: 3rem;
+        }
+
+        .feature-card:nth-child(even) .feature-content {
+            padding-right: 0;
+            padding-left: 3rem;
+        }
+        
+        .feature-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .feature-description {
+            color: var(--muted-text);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+        
+        .feature-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .feature-image-container {
+            background-color: rgba(248, 250, 252, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+        
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 0.5rem;
+        }
+        
+        .feature-card:nth-child(odd) .cta-button {
+            background: var(--primary-green);
+            color: #000;
+        }
+        
+        .feature-card:nth-child(even) .cta-button {
+            background: var(--primary-blue);
+            color: #000;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Subscribe Form Section */
+        .subscribe-section {
+            padding: 4rem 0 8rem;
+            background: var(--dark-bg);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .subscribe-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem;
+            background-color: rgba(248, 250, 252, 0.03);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscribe-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-green), var(--primary-blue), transparent);
+        }
+        
+        .subscribe-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+            font-weight: 600;
+        }
+        
+        .subscribe-description {
+            color: var(--muted-text);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--light-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 230, 118, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(176, 190, 197, 0.5);
+        }
+        
+        .submit-button {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            background: var(--dark-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary-green), var(--primary-blue), transparent);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .footer-logo p {
+            color: var(--muted-text);
+            margin-top: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .feature-card,
+            .feature-card:nth-child(even) {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .feature-content,
+            .feature-card:nth-child(even) .feature-content {
+                padding-right: 0;
+                padding-left: 0;
+                text-align: center;
+            }
+            
+            .feature-description {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .feature-image-container {
+                max-width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--dark-card);
+                padding: 2rem;
+                gap: 1.5rem;
+                text-align: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .navbar-links.active {
+                display: flex;
+            }
+            
+            .subscribe-form {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content {
+                grid-column: 1;
+                padding: 0 10%;
+            }
+            
+            .hero-right {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .feature-title {
+                font-size: 2rem;
+            }
+        }
+
+        .events-carousel-item {
+            display: flex;
+            width: 100%;
+            min-height: 300px;
+        }
+        .events-image, .events-content {
+            width: 50%;
+            max-width: 50%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        .events-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            overflow: hidden;
+            max-height: 400px;
+        }
+        .events-image img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        .events-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            color: #fff;
+            background: transparent;
+            text-align: left;
+        }
+        @media (max-width: 900px) {
+            .events-carousel-item {
+                flex-direction: column;
+                min-height: unset;
+            }
+            .events-image, .events-content {
+                max-width: 100%;
+                width: 100%;
+                padding: 1rem;
+                text-align: center;
+            }
+            .events-image {
+                max-height: 300px;
+            }
+            .events-image img {
+                max-height: 300px;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="navbar-logo">HYPOCOTYL</a>
+            <div class="navbar-links">
+                <a href="#hero" class="navbar-link">Home</a>
+                <a href="#whitepapers" class="navbar-link">Whitepapers</a>
+                <a href="#contact" class="navbar-link">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section - MODIFIED -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"><img src="/api/placeholder/1920/1080" alt="Seedling growth"></div>
+        
+        <div class="hero-grid">
+            <div class="hero-content">
+			<h1>HYPOCOTYL</h1>
+			<p>Growth from legacy roots to decentralized futures</p>
+		</div>
+            <div class="hero-right"></div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    
+    <!-- Focus Areas Section -->
+    <section id="features" class="cards-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Focus Areas</h2>
+                <p>Bridging traditional energy markets with blockchain technology to create sustainable, decentralized infrastructure</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cards Section -->
+    <section id="whitepapers" style="padding-top: 0;">
+        <div class="container">
+            <!-- Feature Cards -->
+            <div class="feature-cards">
+                <!-- Card 1: Decentralized Electricity Trading -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <h3 class="feature-title">Decentralized Electricity Markets</h3>
+                        <p class="feature-description">
+                            We're developing private wheeling and retail electricity trading platforms across Africa. Our day-ahead market solutions empower independent power producers and create resilient local energy economies.
+                        </p>
+                        <a href="#" class="cta-button">
+                            <i class="fas fa-file-pdf"></i>
+                            Download Whitepaper
+                        </a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-image-container">
+                            <img src="card1.webp" alt="Decentralized Electricity Markets">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Tokenized Hydrocarbon Assets -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <h3 class="feature-title">Tokenized Hydrocarbon Assets</h3>
+                        <p class="feature-description">
+                            Transforming trapped or hard-to-exploit hydrocarbon resources into tokenized assets. Funding renewable infrastructure, AI development, and space initiatives through blockchain-powered capital markets.
+                        </p>
+                        <a href="#" class="cta-button">
+                            <i class="fas fa-file-pdf"></i>
+                            Download Whitepaper
+                        </a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-image-container">
+                            <img src="card 2-alt1.webp" alt="Tokenized Hydrocarbon Assets">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Events Carousel Section -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <h2>Events</h2>
+                <p>See what's happening at Hypocotyl</p>
+            </div>
+            <div class="swiper events-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="events-carousel-item">
+                            <div class="events-image">
+                                <img src="IMG-20250123-WA0009.jpg" alt="Event Photo 1">
+                            </div>
+                            <div class="events-content">
+                                <h3 class="events-title">Upcoming Event</h3>
+                                <p class="events-description">Join us for our next event and experience the future of energy innovation.</p>
+                                <a href="#" class="cta-button">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="events-carousel-item">
+                            <div class="events-image">
+                                <img src="IMG-20250123-WA0010.jpg" alt="Event Photo 2">
+                            </div>
+                            <div class="events-content">
+                                <h3 class="events-title">Recent Gathering</h3>
+                                <p class="events-description">See highlights from our most recent gathering with partners and innovators.</p>
+                                <a href="#" class="cta-button">View Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Subscribe Section - NEW -->
+    <section id="contact">
+        <div class="container">
+            <div class="subscribe-container">
+                <h3 class="subscribe-title">Stay Updated</h3>
+                <p class="subscribe-description">Subscribe to our newsletter to receive the latest updates on our projects and whitepapers</p>
+                
+<iframe src="https://hypocotyl.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>HYPOCOTYL</h3>
+                    <p>&copy; 2025 Asoba Corporation. All rights reserved.</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://linkedin.com/company/asoba-co" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/AsobaCloud" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navbarLinks = document.querySelector('.navbar-links');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navbarLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return; // Skip if it's just '#'
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80, // Account for navbar height
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                navbarLinks.classList.remove('active');
+            });
+        });
+
+        // Animate feature cards on scroll
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        // Set cards visible initially for this demo
+        setTimeout(() => {
+            featureCards.forEach(card => {
+                card.classList.add('visible');
+            });
+        }, 500);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.events-swiper', {
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>
