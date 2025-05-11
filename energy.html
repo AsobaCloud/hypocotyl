@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decentralized Energy in Africa | Documentation</title>
+  <!-- Font & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #00E676;
+      --secondary-green: #00C853;
+      --primary-blue: #2979FF;
+      --secondary-blue: #304FFE;
+      --accent-gold: #FFD54F;
+      --dark-bg: #000000;
+      --dark-card: #1E1E1E;
+      --light-text: #FFFFFF;
+      --muted-text: #B0BEC5;
+      --sidebar-width: 280px;
+      --header-height: 60px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    body, p, ul, ol, li, h1, h2, h3, h4, h5, h6, table, th, td {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+    h1, .chapter-title {
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+    h2, .section-title {
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    h3, .subsection-title {
+      font-weight: 500;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    h4 {
+      margin-top: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    p {
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+    ul, ol {
+      margin-bottom: 1.5rem;
+      margin-top: 0.5rem;
+      padding-left: 2rem;
+    }
+    li {
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+    table {
+      margin: 2rem 0;
+      width: 100%;
+    }
+    th, td {
+      font-weight: 400;
+      padding: 0.75rem 0.5rem;
+    }
+    pre {
+      margin: 2rem 0;
+    }
+    .chapter {
+      margin-bottom: 4rem;
+      padding: 2rem;
+      background: rgba(18, 18, 18, 0.5);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    body { background: var(--dark-bg); color: var(--light-text); line-height: 1.6; display: flex; min-height: 100vh; overflow-x: hidden; }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 0;
+      z-index: 100;
+      transition: all 0.3s ease;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    .navbar.scrolled {
+      padding: 1rem 0;
+      background: rgba(18, 18, 18, 0.95);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .navbar-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .navbar-link {
+      color: var(--light-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .navbar-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      transition: width 0.3s ease;
+    }
+    .navbar-link:hover {
+      color: var(--primary-green);
+    }
+    .navbar-link:hover::after {
+      width: 100%;
+    }
+    .content { padding: 6rem 2rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .chapter-nav { margin-bottom: 2rem; }
+    .chapter-nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .chapter-nav a { color: var(--primary-blue); text-decoration: none; padding: 0.25rem 0.5rem; border-radius: 4px; background: var(--dark-card); }
+    .chapter-nav a:hover { background: var(--dark-bg); }
+    object.pdf-viewer { width: 100%; height: 90vh; border: none; background: var(--dark-card); box-shadow: 0 4px 12px rgba(0,0,0,0.5); border-radius: 8px; }
+    footer { text-align: center; padding: 2rem 0; margin-top: 2rem; background: var(--dark-card); color: var(--muted-text); }
+    /* Sidebar Styles */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      padding: 1.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .sidebar-header {
+      padding: 1rem 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .sidebar-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+    }
+    .sidebar-nav {
+      list-style: none;
+    }
+    .sidebar-nav-item {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav-link {
+      color: var(--muted-text);
+      text-decoration: none;
+      display: block;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+    }
+    .sidebar-nav-link:hover,
+    .sidebar-nav-link.active {
+      color: var(--primary-green);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .sidebar-nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      transition: width 0.3s ease;
+    }
+    .sidebar-nav-link:hover::after,
+    .sidebar-nav-link.active::after {
+      width: 100%;
+    }
+    /* Main Content Styles */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 2rem;
+      max-width: 900px;
+      animation: fadeIn 1s ease-in-out;
+      margin-top: var(--header-height);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chapter-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--light-text);
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--light-text);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .subsection {
+      margin-bottom: 1.5rem;
+    }
+    .subsection-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: var(--light-text);
+      font-weight: 500;
+    }
+    p, li, td, th {
+      font-weight: 400;
+    }
+    /* Code Block Styles */
+    pre {
+      background: var(--dark-card);
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    code {
+      font-family: 'Space Grotesk', monospace;
+      color: var(--primary-green);
+    }
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--light-text);
+      font-size: 1.5rem;
+      padding: 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+      .mobile-menu-btn {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1000;
+      }
+      .chapter {
+        padding: 1.5rem;
+      }
+      .chapter-title {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .navbar-links {
+        display: none;
+      }
+      .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(18, 18, 18, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        gap: 1rem;
+      }
+    }
+    .chart-container {
+      max-width: 400px;
+      margin: 2rem auto 1rem auto;
+      text-align: center;
+    }
+    .chart-caption {
+      color: var(--muted-text);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      margin-top: 0.5rem;
+    }
+    .comparison-table th, .comparison-table td { text-align: center; }
+    .comparison-table tr td.readiness-high { background: rgba(0,230,118,0.18); color: #00E676; font-weight: bold; }
+    .comparison-table tr td.readiness-moderate { background: rgba(255,213,79,0.18); color: #FFD54F; font-weight: bold; }
+    .comparison-table tr td.readiness-low { background: rgba(176,190,197,0.18); color: #B0BEC5; font-weight: bold; }
+    .comparison-table tr.country-sa { background: rgba(0,230,118,0.08); }
+    .comparison-table tr.country-ke { background: rgba(41,121,255,0.08); }
+    .comparison-table tr.country-ng { background: rgba(255,213,79,0.08); }
+    .comparison-table tr.country-gh { background: rgba(176,190,197,0.08); }
+    .comparison-table tr.country-ug { background: rgba(176,190,197,0.04); }
+    .navbar-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .navbar-dropdown .dropdown-content {
+      display: none;
+      position: absolute;
+      background: var(--dark-card);
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 200;
+      border-radius: 8px;
+      top: 100%;
+      left: 0;
+    }
+    .navbar-dropdown:hover .dropdown-content,
+    .navbar-dropdown:focus-within .dropdown-content {
+      display: block;
+    }
+    .navbar-dropdown .dropdown-content a {
+      color: var(--light-text);
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s;
+    }
+    .navbar-dropdown .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    .navbar-dropdown .dropdown-content a:hover {
+      background: var(--primary-blue);
+      color: #fff;
+    }
+    @media (max-width: 992px) {
+      .navbar-dropdown .dropdown-content {
+        position: static;
+        min-width: unset;
+        box-shadow: none;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">HYPOCOTYL</a>
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <div class="navbar-link navbar-dropdown">
+          <span>Whitepapers <i class="fas fa-caret-down"></i></span>
+          <div class="dropdown-content">
+            <a href="energy.html">Decentralized Energy in Africa</a>
+            <a href="web3.html">Turning Stranded Assets into Sustainable Wealth</a>
+          </div>
+        </div>
+        <a href="#contact" class="navbar-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-header"></div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li class="sidebar-nav-item"><a href="#introduction" class="sidebar-nav-link">Introduction</a></li>
+        <li class="sidebar-nav-item"><a href="#southafrica" class="sidebar-nav-link">South Africa</a></li>
+        <li class="sidebar-nav-item"><a href="#platforms" class="sidebar-nav-link">Trading Platforms & VPPs</a></li>
+        <li class="sidebar-nav-item"><a href="#commercial" class="sidebar-nav-link">Commercial Viability</a></li>
+        <li class="sidebar-nav-item"><a href="#scaling" class="sidebar-nav-link">Scaling to Other Markets</a></li>
+        <li class="sidebar-nav-item"><a href="#web3" class="sidebar-nav-link">Web3 Technologies</a></li>
+        <li class="sidebar-nav-item"><a href="#conclusion" class="sidebar-nav-link">Conclusion</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    <!-- Introduction -->
+    <section id="introduction" class="chapter">
+      <h1 class="chapter-title">Decentralized Energy in Africa: Emerging Business Models (2025–2027 Outlook)</h1>
+      <div class="section">
+        <h2 class="section-title">Introduction</h2>
+        <p>In Africa's evolving power sector, decentralized energy models are gaining momentum. South Africa is spearheading market reforms to enable competitive electricity trading, creating fertile ground for new business models like energy trading platforms and virtual power plants (VPPs). This report provides a strategic foresight view (2025–2027) of the most commercially viable models in the African decentralized energy sector, focusing especially on South Africa's regulatory shifts and how similar models could scale to other countries (Kenya, Nigeria, Ghana, Uganda). We analyze multi-buyer/multi-seller market platforms, VPP aggregators, peer-to-peer (P2P) trading frameworks, and the role of Web3 technologies (blockchain, smart contracts, decentralized finance) in enhancing these models. Key commercial factors – revenue streams, infrastructure needs, financing, and constraints – are highlighted, alongside country-specific regulatory receptiveness and pilot programs.</p>
+        <p><strong>Key insight:</strong> Across Africa, policy changes are unlocking private energy markets, from South Africa's unbundling of its grid to Kenya's open-access regulations. These changes herald new opportunities for innovative startups and investors to deploy platforms that trade, aggregate, and optimize distributed energy. Web3 solutions, in turn, promise to streamline settlement and build trust in markets with historically weak intermediaries. The following sections map out these trends with recent examples and data.</p>
+      </div>
+    </section>
+    <!-- South Africa -->
+    <section id="southafrica" class="chapter">
+      <h1 class="chapter-title">South Africa's New Electricity Market Dynamics (2024–2027)</h1>
+      <div class="section">
+        <h2 class="section-title">Market Reforms & Regulatory Shifts</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="800" height="340" viewBox="0 0 800 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Eskom Group -->
+            <rect x="60" y="135" width="200" height="200" rx="28" fill="#1E1E1E" stroke="#00E676" stroke-width="2"/>
+            <text x="160" y="165" text-anchor="middle" font-size="20" fill="#00E676" font-weight="bold">Eskom Group</text>
+            <!-- Generation -->
+            <rect x="75" y="190" width="170" height="44" rx="14" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="160" y="218" text-anchor="middle" font-size="16" fill="#00E676" font-weight="bold">Generation</text>
+            <!-- Transmission (NTCSA) -->
+            <rect x="75" y="240" width="170" height="44" rx="14" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="160" y="268" text-anchor="middle" font-size="16" fill="#2979FF" font-weight="bold">Transmission (NTCSA)</text>
+            <!-- Distribution -->
+            <rect x="75" y="290" width="170" height="44" rx="14" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="160" y="318" text-anchor="middle" font-size="16" fill="#FFD54F" font-weight="bold">Distribution</text>
+            <!-- NTCSA as TSO/Market Operator -->
+            <rect x="320" y="210" width="250" height="80" rx="18" fill="#222B3A" stroke="#2979FF" stroke-width="2"/>
+            <text x="445" y="250" text-anchor="middle" font-size="20" fill="#2979FF" font-weight="bold">NTCSA</text>
+            <text x="445" y="272" text-anchor="middle" font-size="14" fill="#B0BEC5">TSO & Market Operator</text>
+            <!-- Arrows from Eskom Group to NTCSA -->
+            <polygon points="245,262 320,250 320,270 245,302" fill="#2979FF"/>
+            <!-- Dotted lines to show separation -->
+            <line x1="75" y1="234" x2="245" y2="234" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="75" y1="284" x2="245" y2="284" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- External Market Participants -->
+            <rect x="610" y="160" width="150" height="54" rx="14" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="685" y="190" text-anchor="middle" font-size="16" fill="#00E676" font-weight="bold">IPP / Trader</text>
+            <rect x="610" y="260" width="150" height="54" rx="14" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="685" y="290" text-anchor="middle" font-size="16" fill="#FFD54F" font-weight="bold">Buyer / Off-taker</text>
+            <!-- Arrows from NTCSA to Market Participants -->
+            <polygon points="570,250 610,197 610,217 570,270" fill="#B0BEC5"/>
+            <polygon points="570,250 610,277 610,297 570,270" fill="#B0BEC5"/>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Eskom's new structure post-breakup: Generation, Transmission (NTCSA as independent TSO & Market Operator), and Distribution, with open access for IPPs and buyers.
+          </div>
+        </div>
+        <p>South Africa is undergoing a transformational shift from a state-monopoly utility model to a competitive multi-buyer, multi-seller market. The Electricity Regulation Amendment (ERA) Act of 2023 sets the stage by unbundling Eskom and establishing the National Transmission Company South Africa (NTCSA) as an independent Transmission System Operator (TSO). NTCSA is tasked with providing open, non-discriminatory grid access and operating a market platform where multiple producers and buyers can trade electricity. By 2027, South Africa expects to have a functioning wholesale electricity market with day-ahead, intraday, and balancing markets open to many sellers and buyers.</p>
+        <p>Key aspects of this evolving landscape include:</p>
+        <ul>
+          <li><strong>Multi-Buyer, Multi-Seller Markets:</strong> The ERA Act mandates an open market platform for competitive trading, enabling independent power producers (IPPs), private distributors, and even large consumers to transact power directly. NTCSA, as Market Operator, will license participants, enforce a new Market Code, and ensure transparent bidding and settlement.</li>
+          <li><strong>Grid Unbundling & NTCSA:</strong> Eskom's transmission grid is being carved out under NTCSA, which will function as a neutral "common carrier." NTCSA's mandate is to expand infrastructure and guarantee third-party access so that any licensed generator or trader can wheel electricity to customers. NTCSA also inherits the role of Central Purchasing Agency (CPA) on an interim basis—maintaining legacy contracts and procuring power to ensure supply security as the market matures.</li>
+          <li><strong>Municipal Wheeling Frameworks:</strong> Progressive municipalities are enabling private wheeling and trading over their local grids. Notably, the City of Cape Town ran a year-long wheeling pilot (2022–2023) and, after its success, officially opened its grid to private energy trading in 2024. Wheeling allows an IPP or licensed trader to supply electricity to a third-party consumer using the city's wires (for a fee). In Cape Town's pilot, over 562,000 kWh of private power were wheeled between three energy companies and off-takers, demonstrating the model's viability.</li>
+          <li><strong>Trader and Retailer Licensing:</strong> South Africa's regulator NERSA has started approving independent electricity trader licenses to facilitate the emerging market. The first private trader (Amatola Green Power, now PowerX) was licensed in 2009, and by 2024 the number of licensed traders grew to around 10 as NERSA approved four new trading licenses in October 2024 despite Eskom's objections. Companies like PowerX, Enpower Trading, Etana Energy, and GreenCo are among the pioneers, effectively acting as aggregators and resellers of energy.</li>
+          <li><strong>Embedded Generation & Third-Party Access:</strong> Regulatory changes have greatly liberalized embedded generation (on-site or distributed power). South Africa removed licensing requirements for generation projects up to 100 MW in 2021, and in 2023 eliminated licensing for all sizes (only registration is needed). This triggered a wave of private solar and wind projects at mines, factories, and farms. Crucially, these embedded generators can now sell excess power to the grid or third parties. The ERA amendments explicitly require the TSO and distributors to provide non-discriminatory network access for such third-party transactions.</li>
+        </ul>
+        <p><strong>Outlook:</strong> By 2025–2026, a South African wholesale electricity market will be operational, with growing liquidity and new opportunities for trading platforms and VPP models.</p>
+      </div>
+    </section>
+    <!-- Trading Platforms & VPPs -->
+    <section id="platforms" class="chapter">
+      <h1 class="chapter-title">Emerging Energy Trading Platforms and VPP Models</h1>
+      <div class="section">
+        <h2 class="section-title">Independent Trading Platforms & Aggregators</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="820" height="320" viewBox="0 0 820 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- IPP -->
+            <rect x="20" y="120" width="140" height="60" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="90" y="155" text-anchor="middle" font-size="16" fill="#00E676" font-weight="bold">IPP</text>
+            <text x="90" y="175" text-anchor="middle" font-size="12" fill="#00E676">Generates Electricity</text>
+            <!-- Arrow to Platform -->
+            <polygon points="160,150 180,150 180,160 200,140 180,120 180,130 160,130" fill="#00E676"/>
+            <!-- Platform/Trader -->
+            <rect x="200" y="100" width="180" height="100" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="290" y="135" text-anchor="middle" font-size="16" fill="#2979FF" font-weight="bold">Platform / Trader</text>
+            <text x="290" y="155" text-anchor="middle" font-size="12" fill="#2979FF">Aggregates Offers</text>
+            <text x="290" y="175" text-anchor="middle" font-size="12" fill="#2979FF">Matches IPPs & Buyers</text>
+            <text x="290" y="195" text-anchor="middle" font-size="12" fill="#2979FF">Handles Metering, Billing</text>
+            <!-- Arrow to Buyer -->
+            <polygon points="380,150 400,150 400,160 420,140 400,120 400,130 380,130" fill="#FFD54F"/>
+            <!-- Buyer -->
+            <rect x="420" y="120" width="140" height="60" rx="12" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="490" y="155" text-anchor="middle" font-size="16" fill="#FFD54F" font-weight="bold">Buyer</text>
+            <text x="490" y="175" text-anchor="middle" font-size="12" fill="#FFD54F">Receives Electricity</text>
+            <!-- Payment Arrows -->
+            <path d="M490 180 Q490 220 310 220 Q130 220 90 180" stroke="#00E676" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+            <text x="120" y="210" font-size="12" fill="#00E676">Payment to IPP</text>
+            <path d="M490 180 Q490 260 290 260 Q90 260 90 180" stroke="#2979FF" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+            <text x="320" y="250" font-size="12" fill="#2979FF">Platform Fee</text>
+            <!-- Payment from Buyer -->
+            <path d="M560 180 Q600 200 700 180" stroke="#FFD54F" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+            <rect x="700" y="120" width="100" height="60" rx="12" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="750" y="155" text-anchor="middle" font-size="16" fill="#B0BEC5" font-weight="bold">Payment</text>
+            <text x="750" y="175" text-anchor="middle" font-size="12" fill="#B0BEC5">to Platform</text>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Flow of electricity and payments in a decentralized energy trading platform.
+          </div>
+        </div>
+        <p>With the regulatory barriers falling, South Africa is seeing a surge of platform-based models that enable decentralized trading and aggregation of energy. Several private companies have launched platforms to connect power producers with consumers, effectively market-making outside of Eskom. For example, PowerX (formerly Amatola Green Power) operates as an exchange for renewable energy, having been South Africa's first licensed trader. Enpower Trading and Etana Energy are newer entrants that facilitated Cape Town's wheeling pilot, each acting as intermediary between a generator (e.g. solar PV at a mall) and an off-taker (e.g. a corporate head office). These platforms handle the complexities of metering, billing, and wheeling fee payments, making it seamless for the buyer and seller. Africa GreenCo, an energy trader with regional ambitions, just obtained licenses to trade domestically and across borders—its model is to aggregate IPP generation and sell to multiple C&I customers, providing a creditworthy intermediary for IPPs. GreenCo's entry is "positioning [it] as a pivotal player in both domestic and cross-border electricity markets" and directly aligns with South Africa's move to a competitive market.</p>
+        <p>These trading platforms typically provide a digital marketplace or bilateral contracting hub. Some, like GreenCo, emphasize bankability and risk mitigation—stepping in as the buyer from IPPs (with long-term PPAs) and then reselling, which helps IPPs secure financing. Others, like PowerX or Enpower, focus on shorter-term trading, matching generation and consumption on a more dynamic basis (monthly or hourly). A crucial enabler is the development of the NTCSA market system: once an official trading platform/exchange is live, these private traders will likely plug into it or even operate on it as brokers. Multi-lateral trading (many-to-many) was already demonstrated in Cape Town's pilot and will become more common. We expect to see marketplace apps and portals where businesses can solicit energy bids from various IPPs, with licensed traders facilitating the deals. In summary, an ecosystem of energy aggregators and brokers is emerging to fill the new market niches—from servicing municipalities looking for power, to grouping small renewable projects into a portfolio for sale, to optimizing time-of-use arbitrage.</p>
+        <h2 class="section-title">Virtual Power Plants (VPPs)</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="820" height="340" viewBox="0 0 820 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Distributed Resources -->
+            <rect x="40" y="40" width="120" height="60" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="100" y="70" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Solar PV</text>
+            <rect x="40" y="130" width="120" height="60" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="100" y="160" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">Battery</text>
+            <rect x="40" y="220" width="120" height="60" rx="12" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="100" y="250" text-anchor="middle" font-size="14" fill="#FFD54F" font-weight="bold">Wind / GenSet</text>
+            <!-- Arrows to VPP Operator -->
+            <polygon points="160,70 200,70 200,80 220,60 200,40 200,50 160,50" fill="#B0BEC5"/>
+            <polygon points="160,160 200,160 200,170 220,150 200,130 200,140 160,140" fill="#B0BEC5"/>
+            <polygon points="160,250 200,250 200,260 220,240 200,220 200,230 160,230" fill="#B0BEC5"/>
+            <!-- VPP Operator -->
+            <rect x="220" y="100" width="200" height="120" rx="16" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="320" y="140" text-anchor="middle" font-size="16" fill="#B0BEC5" font-weight="bold">VPP Operator</text>
+            <text x="320" y="165" text-anchor="middle" font-size="12" fill="#B0BEC5">Aggregates & Controls</text>
+            <text x="320" y="185" text-anchor="middle" font-size="12" fill="#B0BEC5">Distributed Resources</text>
+            <!-- Arrow to Grid/Off-taker -->
+            <polygon points="420,160 460,160 460,170 480,150 460,130 460,140 420,140" fill="#2979FF"/>
+            <rect x="480" y="120" width="140" height="60" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="550" y="155" text-anchor="middle" font-size="16" fill="#2979FF" font-weight="bold">Grid / Off-taker</text>
+            <text x="550" y="175" text-anchor="middle" font-size="12" fill="#2979FF">Buys Capacity/Services</text>
+            <!-- Revenue Arrows -->
+            <path d="M550 180 Q550 260 320 260 Q90 260 100 220" stroke="#00E676" stroke-width="2" fill="none" marker-end="url(#arrowhead2)"/>
+            <text x="180" y="250" font-size="12" fill="#00E676">Revenue to Resource Owners</text>
+            <path d="M550 180 Q550 300 320 300 Q100 300 100 250" stroke="#B0BEC5" stroke-width="2" fill="none" marker-end="url(#arrowhead2)"/>
+            <text x="320" y="290" font-size="12" fill="#B0BEC5">VPP Operator Fee</text>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Aggregation and revenue flows in a Virtual Power Plant (VPP) model.
+          </div>
+        </div>
+        <p>A Virtual Power Plant refers to an aggregation of decentralized generation and storage resources coordinated by a central control platform to operate as though it were a single power plant. South Africa's need for flexible, dispatchable capacity (to alleviate load-shedding) is driving interest in VPPs. According to a 2024 analysis by Rand Merchant Bank, South Africa already had at least five utility-scale VPPs either under construction or operating, and "their numbers are expected to increase" to meet demand for dispatchable energy. These VPPs typically network together assets such as rooftop solar PV, battery energy storage systems (BESS), small-scale wind, and backup generators across different locations, using smart software to monitor and dispatch the collective resources in real time. Operators like Engie, EDF, Red Rocket, Africa Clean Energy Developments (ACED), and Scatec—all major IPP players in SA—are active in building out VPP capabilities. The primary application so far is in the commercial and industrial (C&I) sector: VPPs offer C&I firms a way to maximize self-generated renewable usage and even sell surplus to the grid or other users. For example, a VPP might integrate a chain's solar rooftop installations and a few industrial battery banks to sell peak power back to Eskom or a city when demand is high. They also increasingly serve residential estates and communities, pooling many home batteries/solar systems to either provide backup during outages or trade power locally.</p>
+        <p>A concrete example is the Evolve VPP pilot in Cape Town, which aims to aggregate "hundreds of distributed energy resources in the form of batteries, rooftop solar and other [assets]" with intelligent algorithms controlling their dispatch. This project, in pre-feasibility as of 2024, plans to provide services like critical backup power to customers and load mitigation for the municipal grid (and later possibly ancillary services like frequency regulation). It's raising private investment to build out the platform, highlighting the commercial interest in grid-interactive VPPs. Another example: remote mining operations are using VPP setups to combine solar, batteries, and diesel gensets, optimizing fuel savings and selling any excess to nearby communities. VPPs in South Africa often incorporate AI-driven energy management—algorithms forecast demand and renewable output and decide when to charge or discharge batteries, etc., to maximize value.</p>
+        <p>How VPPs align with regulatory changes: Because VPPs involve exporting power and potentially transacting with the grid, they benefit from the same open access and trading provisions discussed earlier. A VPP operator would typically register as an aggregator/trader with NERSA, and its constituent resources (if above a threshold) would be licensed or registered as generators. With wheeling agreements in place, a VPP can inject power at one point and have an off-taker elsewhere. Crucially, VPPs make embedded generation more bankable—a factory with an oversized solar array can join a VPP and monetize its surplus reliably. Likewise, small renewable projects that are too intermittent or small to directly participate in the market can, via a VPP, provide firmed capacity or guaranteed energy blocks that are attractive to buyers. South Africa's push for ancillary services markets (e.g., a balancing mechanism and reserve market as part of the new Market Code) will further boost VPP models—aggregated batteries can bid into frequency regulation markets or standby reserve contracts, earning fees that add to the VPP revenue stack.</p>
+        <h2 class="section-title">Peer-to-Peer (P2P) Trading</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="820" height="320" viewBox="0 0 820 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Prosumers -->
+            <rect x="40" y="60" width="120" height="60" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="100" y="95" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Prosumer A</text>
+            <rect x="40" y="200" width="120" height="60" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="100" y="235" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">Prosumer B</text>
+            <!-- Arrows to P2P Platform -->
+            <polygon points="160,90 200,90 200,100 220,80 200,60 200,70 160,70" fill="#B0BEC5"/>
+            <polygon points="160,230 200,230 200,240 220,220 200,200 200,210 160,210" fill="#B0BEC5"/>
+            <!-- P2P Platform -->
+            <rect x="220" y="120" width="200" height="80" rx="16" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="320" y="155" text-anchor="middle" font-size="16" fill="#FFD54F" font-weight="bold">P2P Platform</text>
+            <text x="320" y="175" text-anchor="middle" font-size="12" fill="#FFD54F">Matches Buyers & Sellers</text>
+            <!-- Arrows to Buyers -->
+            <polygon points="420,140 460,140 460,150 480,130 460,110 460,120 420,120" fill="#00E676"/>
+            <polygon points="420,180 460,180 460,190 480,170 460,150 460,160 420,160" fill="#2979FF"/>
+            <!-- Buyers -->
+            <rect x="480" y="60" width="120" height="60" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="540" y="95" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Buyer A</text>
+            <rect x="480" y="200" width="120" height="60" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="540" y="235" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">Buyer B</text>
+            <!-- Settlement Arrow -->
+            <path d="M600 90 Q700 160 540 260" stroke="#FFD54F" stroke-width="2" fill="none" marker-end="url(#arrowhead3)"/>
+            <text x="650" y="170" font-size="12" fill="#FFD54F">Automated Settlement</text>
+            <!-- Platform Fee Arrow -->
+            <path d="M320 200 Q320 300 540 260" stroke="#B0BEC5" stroke-width="2" fill="none" marker-end="url(#arrowhead3)"/>
+            <text x="400" y="280" font-size="12" fill="#B0BEC5">Platform Fee</text>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Peer-to-peer energy trading and settlement flows.
+          </div>
+        </div>
+        <p>In addition to these, there are also peer-to-peer (P2P) energy sharing platforms at early stages. These overlap with the concept of energy trading exchanges, but often target smaller prosumers (households with rooftop solar) trading within a community or microgrid. While not yet mainstream in South Africa, the concept is being trialed globally and could surface as regulations on feed-in tariffs and net billing evolve. The Cape Town pilot already showed multi-lateral trading among private parties, which is essentially P2P on a commercial scale. We may soon see a startup enabling neighbors in a suburb to trade solar power via smart meters and blockchain—something already piloted in parts of Europe and Australia—and the regulatory door is opening for it in SA.</p>
+      </div>
+    </section>
+    <!-- Commercial Viability -->
+    <section id="commercial" class="chapter">
+      <h1 class="chapter-title">Commercial Viability in South Africa's Decentralized Models</h1>
+      <div class="section">
+        <h2 class="section-title">Revenue Models</h2>
+        <p>Decentralized energy platforms capitalize on several revenue streams. Energy arbitrage is a core revenue driver, especially where there is a difference between peak and off-peak prices. For example, a battery-heavy VPP can charge when electricity is cheap (or abundant solar midday) and discharge when prices spike during the evening peak, earning the spread. Industrial users face Eskom's Time-of-Use tariffs, so an aggregator can save them money (and take a cut) by shifting consumption. As spot markets develop, traders will arbitrage between periods or regions, buying low and selling high. Even today, some IPP deals use fixed vs. floating price structures to arbitrage Eskom's tariff increases.</p>
+        <p>Aggregation & Capacity Fees are another key revenue stream. Aggregators often earn fees for providing firm capacity or reliability. Mines and factories pay a premium for guaranteed supply—an aggregator might blend output from solar, wind, and diesel generators to ensure a mine gets (say) 20 MW firm, charging a capacity fee on top of energy payments. Similarly, VPPs can bid for standby capacity contracts (capacity remuneration schemes) once the market allows, getting paid for being available even if not always used. Another example is ancillary service payments: a VPP that can provide frequency regulation or reserve could get revenue from the TSO for helping balance the grid (Eskom/NTCSA could contract these services as the market opens).</p>
+        <p>Transaction Fees & Commissions are common in P2P platforms and private exchanges. These typically charge a transaction fee or commission per kWh traded. This might be a few cents per kWh or a percentage of the energy price. For instance, PowerX as a trader could bundle renewable energy and sell to customers, taking a margin between the IPP price and the customer's price. During Cape Town's pilot, the traders likely earned a fee embedded in the energy tariff for facilitating the deal. Over hundreds of GWh, these fees become significant. Some platforms might use a subscription model for participants or charge for premium services (data analytics, green certification, etc.).</p>
+        <p>Grid Services & Wheeling Charge Savings can also provide revenue. In some cases, platforms can share savings from reduced grid usage. A VPP that reduces a client's peak demand not only saves energy costs but also avoids demand charges or deferred grid upgrade costs, which the VPP operator can partly pocket. Additionally, renewable energy certificates (RECs) or carbon credits can provide revenue—an aggregator can tokenize and sell RECs from the green energy delivered (especially if corporate buyers seek proof of renewable consumption). This ties into Web3 usage (blockchain for REC tracking).</p>
+        <h2 class="section-title">Infrastructure & Data Needs</h2>
+        <p>To enable these models at scale, significant infrastructure upgrades are required. Advanced Metering & Smart Grid infrastructure is essential for measuring energy flows from multiple parties and implementing time-based pricing. South Africa is rolling out smart meters in municipalities and Eskom areas, but gaps remain. Automated Meter Reading (AMR) and meter data management systems need to be in place so that each transaction (in a P2P trade or wheeling deal) is measured and verified. The Cape Town pilot, for example, relied on robust metering at generation and off-take points to account for the 562k+ kWh wheeled.</p>
+        <p>Billing and Settlement Systems must evolve beyond traditional utility billing (monthly, manual). Real-time data feeds, APIs for energy accounting, and settlement software are needed to reconcile trades between many sellers/buyers. NTCSA is developing a common financial settlement system for the new market, and private traders are building their own platforms that integrate with utility billing. For instance, Enpower might have an API linkage to Cape Town's billing department to credit the wheeled energy to the generator and charge the consumer appropriately. Blockchain ledgers (discussed later) can also serve as settlement infrastructure by transparently recording transactions.</p>
+        <p>Communication & Control Tech is critical for VPPs. They require real-time control—IoT sensors, controllers, and a communication network (internet or radio links) to send signals to dozens of batteries or solar inverters. Without a reliable communications backbone, a VPP cannot swiftly orchestrate its resources. South Africa's telecom infrastructure is reasonably good in urban areas, but rural connectivity can be a limitation (though improving with 4G/5G and satellite IoT). Additionally, control algorithms (software) are a critical intangible infrastructure—the "brain" of a VPP or trading platform that matches supply and demand. Investment in software development and data analytics is as important as physical kit.</p>
+        <p>Grid Upgrades are necessary to accommodate more embedded generation and wheeling. The grid itself (wires, transformers) must handle changed power flows. Many municipal grids were not designed for reverse power flow (from customers becoming generators). So, grid studies and upgrades are needed to implement these models widely. The ERA Act empowers the Minister to direct grid expansion and even private investment in grid infrastructure to support new generation. For example, adding a new substation or upgrading a line might be necessary for a large wheeling transaction to go through without losses or congestion. These are being addressed gradually via the TSO's Transmission Development Plan.</p>
+        <h2 class="section-title">Financial Backers & Pilots</h2>
+        <p>The rise of these models has attracted diverse backers. Venture Capital and Private Equity are investing in energy tech startups (like aggregator platforms or blockchain energy apps), while larger IPP-driven VPP projects secure infrastructure investment. For instance, Etana Energy's model to take power from a Northern Cape solar farm (Du Plessis Dam Solar) to end-users reached financial close with support from investors—this is cited as one of the first deals of its kind. Standard Bank reported involvement in financing at least four renewable power aggregators in SA, indicating major banks see these as bankable models (likely because the aggregators sign bankable PPAs with creditworthy off-takers). Rand Merchant Bank (RMB) and Nedbank have dedicated energy finance teams looking at VPPs and aggregators, as evidenced by their published insights.</p>
+        <p>Development Finance and Donors are backing platforms that promise wider social benefits (green energy, access). Africa GreenCo, for example, is backed by InfraCo Africa, PIDG, IFU (Danish fund), and the U.S. DFC, among others. These funders see the aggregator model as a way to unlock private generation investment across Southern Africa by mitigating offtaker risk. We also see grants for pilots: e.g., Cape Town's pilot had support from national Treasury's initiatives for municipal energy innovation.</p>
+        <p>Corporate Off-takers are indirectly backing these models by signing on as the first customers, which provides revenue certainty. Amazon and other tech firms in Cape Town reportedly inked deals to purchase renewable power via wheeling; Sibanye-Stillwater (mining) not only partnered with GreenCo but is also pursuing its own solar projects to feed into these frameworks. Such early adopters are crucial to demonstrate viability to investors.</p>
+        <p>Pilot Programs are proving concepts and refining business rules. Aside from Cape Town's, other pilots include Eskom's own experiments—Eskom has discussed setting up a buy/sell trading portal for its large customers and IPPs as a precursor to the full market. Another is municipal net billing programs (e.g., City of Ekurhuleni's pilot to pay SMEs for feeding solar into its grid). These pilots, often modest in scale, help iron out technical issues (like how to handle wheeling losses or voltage control) and refine the business rules for larger roll-out.</p>
+        <h2 class="section-title">Challenges</h2>
+        <p>Despite optimism, there are hurdles. Capital Intensity is a major challenge. Setting up a robust trading platform or VPP can be capital-intensive. VPPs require deploying or integrating many physical assets (if an aggregator finances rooftop solar or batteries to include in its VPP, that's heavy capex). Trading platforms might need credit support—e.g., a trader must have capital to pay generators even if a buyer defaults, akin to working capital. New entrants sometimes face difficulty securing financing until they have a track record. This is where partnerships with established players or insurance (for credit risk) come in. GreenCo's model explicitly addresses capital constraint for IPPs by providing a secure buyer.</p>
+        <p>Regulatory Complexity is another challenge. The regulatory environment, while opening, is still evolving. There can be friction in licensing (lengthy processes, as seen by the years it took to get initial traders licensed), and uncertainty in how certain charges will apply. For instance, wheeling tariffs and loss factors need to be standardized across municipalities and Eskom—an unclear or high wheeling cost could kill the economics of a private deal. Regulators like NERSA are feeling their way on setting these charges. Moreover, until the market code is fully in force, there may be interim rules that limit some trading activities (e.g., caps on volumes or requirement that Eskom's CPA is involved in certain transactions). Regulatory risk is thus a factor: if government policy shifts (due to political changes) or if Eskom's restructuring faces delays, the momentum could slow. So far, however, the trend is toward more liberalization, not less, given the dire need for new generation.</p>
+        <p>Technical Maturity is a concern. Integrating new tech like blockchain, or coordinating thousands of DER endpoints in a VPP, is a technical challenge. System stability is a concern—Eskom has warned that high penetration of intermittent sources could impact grid frequency if not properly managed. VPPs and trading platforms must demonstrate that they can operate without causing disruptions. This means rigorous testing of control algorithms, cybersecurity (especially for IoT devices to prevent hacking), and reliability under various scenarios (e.g., how does a VPP respond if a major grid outage occurs?). The good news is that Eskom is actively deploying utility-scale battery farms and learning to work with distributed resources, which will improve technical accommodation.</p>
+        <p>Market Liquidity and Scale is a classic challenge for trading platforms. In early stages, there may be few buyers and sellers, making it hard to get competitive pricing. Platforms might need market-making mechanisms or initial subsidies to incentivize participation. If an aggregator cannot sign up enough off-takers, it may not be able to contract with all the IPPs it wants (and vice versa). However, with load-shedding as a motivator, demand for alternative suppliers is high in SA, which drives participation.</p>
+        <p><strong>Summary:</strong> South Africa's decentralized energy ventures appear commercially viable given the convergence of enabling policy and urgent market demand. Revenue opportunities are diverse (energy sales, services, arbitrage), and early pilots have proven the concepts on a small scale, yielding crucial lessons. Stakeholders are actively investing, and while challenges exist, none seem insurmountable with the current regulatory support and technological trends. The next 2–3 years should see rapid scaling of these models in South Africa.</p>
+      </div>
+    </section>
+    <!-- Scaling to Other Markets -->
+    <section id="scaling" class="chapter">
+      <h1 class="chapter-title">Scaling into Other African Markets: Country Outlooks</h1>
+      <div class="section">
+        <h2 class="section-title">Kenya</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="800" height="340" viewBox="0 0 800 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ministry of Energy -->
+            <rect x="340" y="20" width="120" height="40" rx="10" fill="#1E1E1E" stroke="#00E676" stroke-width="2"/>
+            <text x="400" y="45" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Ministry of Energy</text>
+            <!-- EPRA -->
+            <rect x="340" y="70" width="120" height="40" rx="10" fill="#1E1E1E" stroke="#2979FF" stroke-width="2"/>
+            <text x="400" y="95" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">EPRA (Regulator)</text>
+            <!-- KETRACO -->
+            <rect x="100" y="140" width="140" height="44" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="170" y="168" text-anchor="middle" font-size="13" fill="#2979FF" font-weight="bold">KETRACO (Tx)</text>
+            <!-- KPLC -->
+            <rect x="560" y="140" width="140" height="44" rx="12" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="630" y="168" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">KPLC (Dist/Retail)</text>
+            <!-- IPPs -->
+            <rect x="100" y="240" width="120" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="160" y="268" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">IPPs</text>
+            <!-- Private Distributors/Retailers -->
+            <rect x="560" y="240" width="140" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="630" y="268" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">Private Distributors</text>
+            <!-- Large Off-takers -->
+            <rect x="340" y="290" width="120" height="40" rx="10" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="400" y="315" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">Large Off-takers</text>
+            <!-- Mini-grid/P2P Operators -->
+            <rect x="240" y="200" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="300" y="225" text-anchor="middle" font-size="12" fill="#B0BEC5">Mini-grid / P2P</text>
+            <!-- Regional Interconnectors -->
+            <rect x="440" y="200" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="500" y="225" text-anchor="middle" font-size="12" fill="#B0BEC5">Regional Interconnectors</text>
+            <!-- Arrows (Regulatory) -->
+            <line x1="400" y1="60" x2="400" y2="70" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="170" y2="140" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="630" y2="140" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="160" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="630" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Market Flows -->
+            <line x1="170" y1="184" x2="170" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="630" y1="184" x2="630" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="160" y1="284" x2="400" y2="290" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="630" y1="284" x2="400" y2="290" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="300" y1="240" x2="400" y2="290" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="500" y1="240" x2="400" y2="290" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Kenya power sector stakeholder map (2024–2025): regulatory and market relationships under new open access reforms.
+          </div>
+        </div>
+        <p>Kenya is on the cusp of major reforms that could open the door for energy trading platforms and aggregators similar to South Africa's. Historically, Kenya's power sector has been dominated by Kenya Power and Lighting Company (KPLC) as the sole distributor and retailer, and Kenya Electricity Transmission Co. (KETRACO) as the single transmitter, with IPPs selling power only to KPLC under PPAs. However, in April 2024, Kenya's Energy and Petroleum Regulatory Authority (EPRA) published draft Energy (Electricity Market, Bulk Supply, and Open Access) Regulations 2024, which aim to break the longstanding monopoly in electricity supply. These regulations, expected to be gazetted into law, would establish a competitive market framework allowing multiple buyers and sellers.</p>
+        <p>Key features of Kenya's emerging model include:</p>
+        <ul>
+          <li><strong>Open Access and Wheeling:</strong> The draft regulations explicitly allow wheeling of electricity using the transmission and distribution network of KETRACO and KPLC. This means an IPP in Kenya could contract directly with, say, a large industrial client or a private distributor, and use the national grid to deliver power (paying a wheeling charge determined by EPRA). It's a significant shift from the current setup where only KPLC can buy from IPPs. Joseph Siror, CEO of Kenya Power, has publicly welcomed these regulations, indicating even the utility accepts the need for change.</li>
+          <li><strong>Multiple Licensees – Generation, Distribution, Retail:</strong> The new rules propose that private companies can obtain licenses to generate, transmit, distribute, and even retail electricity. In other words, an entity could build its own mini-grid or even a parallel distribution network to serve customers, introducing competition at the distribution level. EPRA will regulate tariffs and ensure non-discriminatory grid access for these licensees. This echoes South Africa's unbundling: generation and retail are opened up, while networks remain regulated common carriers. If implemented, we may see Kenya's first independent power retailers and aggregators by 2025–2026.</li>
+          <li><strong>Import/Export and Regional Trading:</strong> The regulations also allow private companies to import power from neighboring countries. This is notable as Kenya is interconnected with Ethiopia (which has surplus hydro power) and the East Africa Power Pool is developing. A private off-taker in Kenya could, in theory, import cheaper power from Ethiopia if KPLC's prices are higher, once frameworks are set. This might encourage cross-border trading platforms or regional aggregators (like GreenCo, which after South Africa might look at Kenya).</li>
+          <li><strong>Regulatory Support:</strong> EPRA's move shows strong regulatory receptiveness. Additionally, Kenya's 2019 Energy Act had already provided for net metering and community energy projects, though implementation lagged. With the 2024 regulations, Kenya is signaling that it wants to embrace private markets and innovation to reduce consumer tariffs and spur investment. The government is keen on reducing the cost of power, which these competitive measures seek to achieve.</li>
+        </ul>
+        <p>Successful decentralized pilots in Kenya hint at readiness for new models:</p>
+        <ul>
+          <li><strong>Mini-grids and P2P Trading Pilots:</strong> Kenya has been a hotbed for off-grid solar and mini-grids (e.g., companies like PowerGen, Rafiki Power operate solar mini-grids in villages). Some of these mini-grids have experimented with peer-to-peer energy trading within the community. Notably, a company called Rehub has been conducting a pilot study on P2P energy trading using blockchain in Kenya. While details are scant publicly, the fact that a Kenyan startup is testing blockchain-based P2P indicates local capacity for innovation. Another initiative involves using blockchain for energy access tokens in rural Kenya (for example, projects that allow solar home system credits to be traded, though on a small scale).</li>
+          <li><strong>Blockchain and IoT in grids:</strong> Kenya's tech community is aware of the potential of blockchain for energy. In a 2023 piece discussing Kenya as an energy hub, experts highlighted blockchain enabling decentralized energy trading and P2P exchanges as a key opportunity as the grid modernizes. Moreover, Kenya's leadership in mobile payments (M-Pesa) could dovetail into energy trading platforms where micro-payments for kilowatt-hours between peers are needed.</li>
+          <li><strong>Corporate Renewable Procurement:</strong> Even before formal wheeling, some large Kenyan companies have pursued direct sourcing of renewables. For instance, there have been "synthetic PPAs" or agreements where an IPP builds a plant and the corporate off-taker gets the benefit via financial contracts. Once open access is implemented, these can become real energy transfers. The presence of willing off-takers (e.g., telcos, flower farms, data centers) makes aggregator business models viable—an entity could aggregate several corporates to invest in a wind farm and wheel power to them.</li>
+        </ul>
+        <p>Kenya's readiness for VPPs and aggregation: On the distributed energy front, Kenya has a high penetration of solar home systems and commercial PV installations. If regulations allow third-party aggregation, Kenya could see VPPs emerging especially for large commercial estates in Nairobi or tea/coffee farms upcountry with solar+battery setups. The concept of "virtual net metering" could allow a business with solar in one location to offset its usage in another—an opening for VPP-like services. Kenya's grid reliability issues (voltage fluctuations, occasional shortages) provide a value pool for VPPs to do load management and grid support. The main constraint will be the actual rollout of the regulations—expected in late 2024 or 2025—and the establishment of necessary systems (grid code for wheeling, standard PPAs, etc.). Given Kenya's fairly advanced power sector administration and its successful IPP program to date, the country appears ripe to adopt decentralized trading platforms quickly once legally enabled. Investors and startups should watch Kenya in 2025 as possibly the next frontier for private energy trading in Africa.</p>
+        <h2 class="section-title">Nigeria</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="700" height="400" viewBox="0 0 700 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Federal Ministry of Power -->
+            <rect x="270" y="20" width="160" height="40" rx="10" fill="#1E1E1E" stroke="#00E676" stroke-width="2"/>
+            <text x="350" y="45" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Federal Ministry of Power</text>
+            <!-- NERC (Federal Regulator) -->
+            <rect x="270" y="70" width="160" height="40" rx="10" fill="#1E1E1E" stroke="#2979FF" stroke-width="2"/>
+            <text x="350" y="95" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">NERC (Federal Regulator)</text>
+            <!-- State Governments -->
+            <rect x="40" y="70" width="140" height="40" rx="10" fill="#1E1E1E" stroke="#00E676" stroke-width="2"/>
+            <text x="110" y="95" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">State Governments</text>
+            <!-- State Regulators -->
+            <rect x="40" y="120" width="140" height="40" rx="10" fill="#1E1E1E" stroke="#2979FF" stroke-width="2"/>
+            <text x="110" y="145" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">State Regulators</text>
+            <!-- TCN (Transmission) -->
+            <rect x="270" y="140" width="160" height="44" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="350" y="168" text-anchor="middle" font-size="13" fill="#2979FF" font-weight="bold">TCN (Transmission)</text>
+            <!-- GenCos -->
+            <rect x="120" y="220" width="120" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="180" y="248" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">GenCos</text>
+            <!-- DisCos -->
+            <rect x="460" y="220" width="120" height="44" rx="12" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="520" y="248" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">DisCos</text>
+            <!-- Mini-grid Operators -->
+            <rect x="40" y="320" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="100" y="345" text-anchor="middle" font-size="12" fill="#B0BEC5">Mini-grid Operators</text>
+            <!-- Embedded Generators -->
+            <rect x="180" y="320" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="240" y="345" text-anchor="middle" font-size="12" fill="#B0BEC5">Embedded Generators</text>
+            <!-- Eligible Customers -->
+            <rect x="340" y="320" width="120" height="40" rx="10" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="400" y="345" text-anchor="middle" font-size="12" fill="#FFD54F">Eligible Customers</text>
+            <!-- Off-grid/Blockchain/P2P Pilots -->
+            <rect x="500" y="320" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="560" y="345" text-anchor="middle" font-size="12" fill="#B0BEC5">Off-grid / P2P Pilots</text>
+            <!-- Arrows (Regulatory) -->
+            <line x1="350" y1="60" x2="350" y2="70" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="110" y1="110" x2="110" y2="120" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="350" y1="110" x2="350" y2="140" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="110" y1="160" x2="180" y2="220" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="350" y1="184" x2="180" y2="220" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="350" y1="184" x2="520" y2="220" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="180" y1="264" x2="100" y2="320" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="180" y1="264" x2="240" y2="320" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="520" y1="264" x2="400" y2="320" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="520" y1="264" x2="560" y2="320" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Nigeria power sector stakeholder map (2024–2025): regulatory and market relationships under new decentralized reforms.
+          </div>
+        </div>
+        <p>Nigeria's power sector is both one of Africa's largest and one of its most challenging. Despite privatization of generation and distribution companies in 2013, Nigeria still suffers chronic electricity shortages, and many consumers rely on self-generation (diesel generators). However, a landmark Electricity Act 2023 has completely revamped the legal framework, decentralizing and de-monopolizing the sector and empowering sub-national entities. Nigeria is moving from a centralized model to a more federated approach, which ironically opens space for decentralized energy trading and Web3 solutions perhaps more than ever before.</p>
+        <p>Key points for Nigeria include:</p>
+        <ul>
+          <li><strong>State-Level Electricity Markets:</strong> The 2023 Act allows Nigerian states to enact their own electricity market laws and regulate electricity within their state (if they choose, otherwise the federal regulator NERC still applies). This means states like Lagos, Ogun, etc., can create frameworks for private power companies to operate, issue licenses, and even establish state grids. We could see some states more aggressively promote private investment and competition. For example, Lagos State might authorize multiple private distributors or mini-grid operators to serve industrial clusters, fostering competitive supply options for businesses in Lagos. This devolution could lead to a patchwork of localized energy trading platforms—effectively smaller-scale markets or exchanges catering to a city or region.</li>
+          <li><strong>Embedded Generation and Off-Grid Liberalization:</strong> The Act and related policies make it much easier for individuals and communities to generate and distribute power. Notably, no license is required for generation up to 100 kW or for mini-grids under certain size. This encourages rooftop solar and small community microgrids. Furthermore, licensed entities can generate and distribute power via smart grids within a state. So a private developer could set up a township-level grid with solar, batteries, and manage it independently. This environment is highly conducive to peer-to-peer trading within those microgrids, because the Act essentially legitimizes independent mini-utilities. Companies like OLLY Energy or Arnergy in Nigeria, which provide solar plus storage solutions to businesses, could evolve into local aggregators, pooling clusters of clients to share power or trade excess.</li>
+          <li><strong>Eligible Customer & Wheeling:</strong> Even before the 2023 Act, Nigeria had an "Eligible Customer" regulation (2017) that allowed large consumers (≥2 MW, later ≥1 MW) to buy power directly from generation companies (GenCos) using the Transmission Company of Nigeria (TCN) network for delivery. A few industries took advantage, negotiating supply from GenCos and paying wheeling to TCN plus a fee to the local Disco (distribution company) for using its network. Implementation was slow due to Disco resistance, but it set a precedent. Now, with the new law, these kinds of direct contracts should become easier, potentially paving the way for formal trading companies that broker between GenCos with excess capacity and willing large consumers. For instance, an aggregator might sign up a cluster of five factories (5 MW each) and contract 25 MW from a GenCo, scheduling deliveries via TCN—effectively acting like a mini-utility.</li>
+          <li><strong>Decentralized Platforms & Blockchain Pilots:</strong> Nigeria has seen significant interest in applying blockchain and smart tech to its energy woes. One project by OCLAS Consulting advised on a blockchain-IoT microgrid for a rural community in Nigeria that was able to reduce diesel use by 70% and enable P2P solar energy trades during outages. This suggests that even off-grid communities can benefit from trustless energy marketplaces where neighbors trade excess solar for battery charge or generator use, coordinated by blockchain. Additionally, Nigerian tech firms have looked at using blockchain for energy tokenization and payment—for example, one idea is to tokenize kilowatt-hours so that people can invest in solar projects and get paid back in energy credits. The new Act's opening of the market provides the legal sandbox to try these innovations, since private actors can now operate more freely.</li>
+        </ul>
+        <p>A LinkedIn analysis of the Electricity Act 2023 explicitly calls out that "the door is now open for solar companies to harness blockchain and transform how they generate, distribute, and trade energy", highlighting peer-to-peer energy networks as a promising avenue in Nigeria's soon-to-be "technology-driven market". In a context where trust in utilities is low (Nigerian Discos have collection issues and many customers are unmetered), blockchain offers transparency and trust. It can enable a peer-to-peer network without a central intermediary, which is appealing in Nigeria's weak institutional environment. For example, apartment complexes or business parks could use a blockchain-based system to internally trade solar power and settle accounts, bypassing the need to rely on the faltering Disco. The BusinessDay Nigeria insight on blockchain in African energy reinforces that blockchain can shift "transactional dominance" from utilities to small producers/consumers and remove intermediaries through secure, decentralized transaction records. This is practically tailor-made for Nigeria, where the centralized intermediary (the Disco) is often the weak link—blockchain-backed P2P could let prosumers and consumers transact directly in a "trustless" yet secure way, ensuring everyone gets paid and energy flows are accounted.</p>
+        <p>VPP and Aggregation Potential: Nigeria's huge diesel generator fleet (estimated 15 GW+ of backup generators) is actually an opportunity for VPPs. Firms like Virtus (Nigeria) have looked into aggregating standby generators in Lagos to create a virtual peaking plant. With smart controls, when the grid is down or during peak pricing, a VPP could coordinate many generators or solar-battery systems to supply power to neighbors or back to the grid (if allowed), potentially earning money instead of just idling. The regulatory regime now might allow an aggregator to sign up customers across a city to form a virtual power pool and transact energy. The concept of an urban microgrid is also gaining traction—e.g., using solar, batteries, and a few small gas plants to supply an industrial estate while connected to (but not reliant on) the main grid. Nigeria's government has programs for mini-grid development and interconnected mini-grids, which could be a stepping stone to virtual power plants.</p>
+        <p>Challenges in Nigeria: While the opportunities are immense, Nigeria's reality is tough. The national grid is fragile and operates well below installed capacity; Discos are financially weak, which could impede wheeling arrangements (they fear losing paying customers). Implementation of the new Act will require coordination between federal and state laws—some uncertainty exists on how smoothly that will go. However, on the positive side, the sheer demand for reliable power in Nigeria means that if regulations permit alternative supply arrangements, consumers will flock to them. We expect to see in 2025–2027 a proliferation of creative energy business models in Nigeria: from energy-as-a-service solar companies that take over entire neighborhoods' power supply, to blockchain-based energy credit systems in universities or markets, to state-sponsored competitive tenders for private power in places like Abuja or Kaduna. Nigeria might not get a full national trading exchange like South Africa soon, but it will likely become a patchwork of decentralized markets—a fertile ground for both VPP aggregators and P2P trading communities.</p>
+        <h2 class="section-title">Ghana</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="800" height="340" viewBox="0 0 800 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ministry of Energy -->
+            <rect x="340" y="20" width="120" height="40" rx="10" fill="#1E1E1E" stroke="#00E676" stroke-width="2"/>
+            <text x="400" y="45" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Ministry of Energy</text>
+            <!-- Energy Commission -->
+            <rect x="340" y="70" width="120" height="40" rx="10" fill="#1E1E1E" stroke="#2979FF" stroke-width="2"/>
+            <text x="400" y="95" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">Energy Commission</text>
+            <!-- GRIDCo (Transmission) -->
+            <rect x="100" y="140" width="140" height="44" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="170" y="168" text-anchor="middle" font-size="13" fill="#2979FF" font-weight="bold">GRIDCo (Tx)</text>
+            <!-- ECG (Dist/Retail) -->
+            <rect x="560" y="140" width="140" height="44" rx="12" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="630" y="168" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">ECG (Dist/Retail)</text>
+            <!-- VRA (Generation) -->
+            <rect x="100" y="240" width="120" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="160" y="268" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">VRA (Gen)</text>
+            <!-- IPPs -->
+            <rect x="560" y="240" width="120" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="620" y="268" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">IPPs</text>
+            <!-- Net Metering Customers -->
+            <rect x="340" y="290" width="120" height="40" rx="10" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="400" y="315" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">Net Metering</text>
+            <!-- Mini-grid Operators -->
+            <rect x="240" y="200" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="300" y="225" text-anchor="middle" font-size="12" fill="#B0BEC5">Mini-grid Ops</text>
+            <!-- Mobile Money/Fintech -->
+            <rect x="440" y="200" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="500" y="225" text-anchor="middle" font-size="12" fill="#B0BEC5">Mobile Money/Fintech</text>
+            <!-- Arrows (Regulatory) -->
+            <line x1="400" y1="60" x2="400" y2="70" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="170" y2="140" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="630" y2="140" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="160" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="620" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Market Flows -->
+            <line x1="170" y1="184" x2="170" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="630" y1="184" x2="620" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="160" y1="284" x2="400" y2="290" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="620" y1="284" x2="400" y2="290" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="300" y1="240" x2="400" y2="290" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="500" y1="240" x2="400" y2="290" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Ghana power sector stakeholder map (2024–2025): regulatory and market relationships for distributed energy and net metering.
+          </div>
+        </div>
+        <p>Ghana's power sector is relatively stable and has achieved near-universal access, but it has faced issues of excess generation capacity and utility financial stress in recent years. The market structure is still vertically integrated in practice (with Electricity Company of Ghana (ECG) as the main distributor/retailer in the south, and Northern Electricity Co. in the north, plus GRIDCo for transmission and Volta River Authority (VRA) and IPPs for generation). Ghana has not yet introduced competition at the retail level; however, it has implemented net metering and is exploring ways to encourage private sector solutions for renewable energy integration.</p>
+        <p>Key points for Ghana include:</p>
+        <ul>
+          <li><strong>Regulatory Receptiveness:</strong> Ghana's approach to private sector participation has been cautious. In 2020, due to a situation of excess contracted capacity (leading to expensive take-or-pay obligations for unused power), Ghana's Energy Commission actually imposed a moratorium on new renewable IPP licenses to protect the finances of ECG. This indicates a wariness of overshooting demand with IPPs and an emphasis on planning. However, as of April 2023, that moratorium was lifted to allow more renewable development in line with climate goals. Furthermore, the Energy Commission is working on Guidelines for Distributed Renewable Energy Generation, which suggests increasing receptiveness to decentralized generation by private entities. These guidelines might clarify how businesses or communities can generate power and sell to themselves or others (perhaps a step toward wheeling or direct PPAs in the future).</li>
+          <li><strong>Net Metering and Distributed Generation:</strong> Ghana established a Net Metering Code in 2015, allowing consumers with solar PV (or other renewables) to feed excess power back into the grid for credit. Uptake was initially slow (due to some policy and technical hurdles), but interest is growing as solar panel costs drop. In 2023, Ghana updated this scheme with a Net Metering Sub-Code to streamline interconnection of renewables on the low-voltage network. Net metering essentially allows a form of energy transaction—albeit between a customer and the utility (ECG) rather than directly between peers. It sets the stage for future P2P trading: once you have two-way metering in place, it's a matter of regulatory tweaks to allow credit transfers or third-party sales. Ghana's regulators may eventually consider moving from net metering (credit at retail tariff) to net billing (sell excess at a set feed-in tariff) or even peer sales at negotiated rates, especially for commercial producers.</li>
+          <li><strong>No Multi-Buyer Market Yet:</strong> Ghana has not unbundled to the extent of creating a wholesale market or multiple retailers. IPPs still sell via PPAs to ECG or through government tenders (like the competitive procurement under the Ghana Renewable Energy Master Plan). So the kind of energy trading platforms seen in SA or being tried in Kenya have not been established in Ghana. That said, Ghana has a relatively advanced grid and stable institutions, meaning if policy shifts to allow it, implementing a trading platform or aggregator model could be done without huge technical barriers. The Energy Commission and PURC (Public Utilities Regulatory Commission) would just need to craft the rules. For now, however, any peer-to-peer or third-party supply in Ghana is essentially not allowed beyond pilots or controlled environments.</li>
+          <li><strong>Decentralized Energy Pilots:</strong> Ghana's focus has been on mini-grids for islands and lakeside communities (through projects like Ghana Energy Development and Access Project) and solar home systems—not so much on blockchain or P2P trading. We have not seen notable blockchain energy trials in Ghana to date. One innovative project in 2019 was the use of blockchain by a foreign startup to facilitate energy crowdfunding for mini-grids in Ghana, but that was more on financing side than trading. However, Ghana's strong tech and fintech sector (centered in Accra) means the talent is there if opportunities arise. Another area Ghana is exploring is the use of mobile money for prepaid electricity—ECG has broadly adopted prepaid smart meters where customers top-up via mobile. This infrastructure could enable dynamic tariffs or peer credit transfer if the regulations permitted.</li>
+          <li><strong>Virtual Power Plant Readiness:</strong> Ghana's grid has a good amount of hydro and natural gas generation, with renewables (solar, wind) still under 5%. As more rooftop solar comes online (especially on commercial buildings in Accra and Kumasi), there will be scope for aggregation. One near-term opportunity is for large commercial or industrial players who already have backup generators or solar to aggregate their resources virtually to reduce peak load from ECG (peak shaving) or to participate in any demand response programs that Ghana may institute. For example, if ECG faces supply shortfall, a VPP of commercial standby generators could be paid to inject power or reduce demand. While Ghana doesn't yet have a formal mechanism for this, the concept aligns with Ghana's goal of efficient use of generation. The Renewable Energy Master Plan 2019 emphasizes integrating renewables reliably; a VPP is one way to do so. If donors or international partners fund a VPP pilot in Ghana (say, connecting several hospital solar+storage systems into a single control platform), that could demonstrate the concept.</li>
+          <li><strong>Cross-border Trading:</strong> Ghana is part of the West African Power Pool (WAPP) and has interconnections with Côte d'Ivoire, Togo, etc. Currently, cross-border trades are done utility-to-utility. But in the future, if Ghana allows private trading, a company in Ghana might directly import cheaper power from say Côte d'Ivoire's abundant gas plants. This scenario is probably a few years off and would need WAPP regulations to adapt, but it's part of the long-term outlook where decentralized trading isn't just within a country but across Africa via power pools.</li>
+        </ul>
+        <p>In summary, Ghana is cautiously opening up. In the next 2–3 years, we expect Ghana to continue strengthening its frameworks for distributed generation (issuing the new guidelines, improving net metering rates and processes). Private energy trading exchanges may not be immediate in Ghana due to the oversupply situation and focus on stabilizing ECG's finances. However, as Ghana pursues its 10% renewables by 2030 target, it will need to integrate independent projects; this could lead to opportunities for renewable aggregators to bundle smaller solar farms or for industrial players to collectively purchase green energy. Ghana may take inspiration from Kenya and South Africa once those models prove successful—especially if it leads to cost savings for consumers. Investors should keep an eye on Ghana's Energy Commission announcements in 2024 for any pilot programs or regulatory sandboxes around energy trading. For now, the most viable decentralized model in Ghana is likely solar net metering and community solar schemes (where multiple consumers invest in a solar array and share credits), which is a simpler form of local energy exchange.</p>
+        <h2 class="section-title">Uganda</h2>
+        <div style="text-align:center; margin: 2rem 0;">
+          <svg width="800" height="340" viewBox="0 0 800 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ministry of Energy -->
+            <rect x="340" y="20" width="120" height="40" rx="10" fill="#1E1E1E" stroke="#00E676" stroke-width="2"/>
+            <text x="400" y="45" text-anchor="middle" font-size="14" fill="#00E676" font-weight="bold">Ministry of Energy</text>
+            <!-- ERA -->
+            <rect x="340" y="70" width="120" height="40" rx="10" fill="#1E1E1E" stroke="#2979FF" stroke-width="2"/>
+            <text x="400" y="95" text-anchor="middle" font-size="14" fill="#2979FF" font-weight="bold">ERA (Regulator)</text>
+            <!-- UETCL (Transmission/Single Buyer) -->
+            <rect x="100" y="140" width="140" height="44" rx="12" fill="#2979FF" fill-opacity="0.15" stroke="#2979FF" stroke-width="2"/>
+            <text x="170" y="168" text-anchor="middle" font-size="13" fill="#2979FF" font-weight="bold">UETCL (Tx/Buyer)</text>
+            <!-- Umeme (Main Distributor) -->
+            <rect x="560" y="140" width="140" height="44" rx="12" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="630" y="168" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">Umeme (Dist)</text>
+            <!-- IPPs -->
+            <rect x="100" y="240" width="120" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="160" y="268" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">IPPs</text>
+            <!-- Mini-grid Operators -->
+            <rect x="560" y="240" width="120" height="44" rx="12" fill="#00E676" fill-opacity="0.15" stroke="#00E676" stroke-width="2"/>
+            <text x="620" y="268" text-anchor="middle" font-size="13" fill="#00E676" font-weight="bold">Mini-grid Ops</text>
+            <!-- Solar Home System Providers -->
+            <rect x="340" y="290" width="120" height="40" rx="10" fill="#FFD54F" fill-opacity="0.15" stroke="#FFD54F" stroke-width="2"/>
+            <text x="400" y="315" text-anchor="middle" font-size="13" fill="#FFD54F" font-weight="bold">Solar Home Systems</text>
+            <!-- Rural Electrification Program -->
+            <rect x="240" y="200" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="300" y="225" text-anchor="middle" font-size="12" fill="#B0BEC5">Rural Electrification</text>
+            <!-- Off-grid/Blockchain Pilots -->
+            <rect x="440" y="200" width="120" height="40" rx="10" fill="#B0BEC5" fill-opacity="0.15" stroke="#B0BEC5" stroke-width="2"/>
+            <text x="500" y="225" text-anchor="middle" font-size="12" fill="#B0BEC5">Off-grid/Blockchain</text>
+            <!-- Arrows (Regulatory) -->
+            <line x1="400" y1="60" x2="400" y2="70" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="170" y2="140" stroke="#2979FF" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="630" y2="140" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="160" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="400" y1="110" x2="620" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Market Flows -->
+            <line x1="170" y1="184" x2="170" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="630" y1="184" x2="620" y2="240" stroke="#00E676" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="160" y1="284" x2="400" y2="290" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="620" y1="284" x2="400" y2="290" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="300" y1="240" x2="400" y2="290" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="500" y1="240" x2="400" y2="290" stroke="#B0BEC5" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <!-- Arrowhead marker -->
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 8 4, 0 8" fill="#B0BEC5"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="chart-caption" style="color:#B0BEC5; font-size:1rem;">
+            <strong>Figure:</strong> Uganda power sector stakeholder map (2024–2025): regulatory and market relationships for centralized and off-grid energy.
+          </div>
+        </div>
+        <p>Uganda's electricity sector is smaller and predominantly centralized, but with significant private involvement in generation. The single buyer model (Uganda Electricity Transmission Co. as the offtaker) is still in effect, and distribution is mostly by Umeme (a private concessionaire, which the government has indicated it may not renew). Uganda's main grid covers towns and industry, while a large portion of the population is off-grid. Decentralized and peer-to-peer energy models in Uganda are largely in the domain of off-grid systems and pilot projects, given that the national market is not yet liberalized for multiple sellers.</p>
+        <p>Key points for Uganda include:</p>
+        <ul>
+          <li><strong>Regulatory Environment:</strong> Uganda has an Electricity Regulatory Authority (ERA) that oversees the sector. As of now, ERA issues licenses for generation, distribution, and sale within specified territories. There isn't open retail competition—Umeme is the dominant distributor in its area. However, Uganda has been very supportive of mini-grids and solar home systems to reach rural areas. The Uganda Off-Grid Market Accelerator and similar programs have led to dozens of solar mini-grids being installed. These mini-grids often operate under special licenses or exemptions and can set local tariffs. This environment is ripe for P2P energy trading within mini-grids: for instance, if one household has surplus from their solar home system and another needs power, a local trading platform could facilitate that. Companies working on blockchain P2P in East Africa, like Lightency, have indeed targeted Uganda among other countries. Lightency, a Web3 energy startup, has been exploring blockchain use in Tanzania, Uganda, Burkina Faso, Senegal, etc., likely aiming to create community-level energy trading solutions where the national grid is weak or absent.</li>
+          <li><strong>Decentralized Pilots:</strong> One notable pilot is a blockchain-based solar energy sharing project on a Ugandan mini-grid (mentioned in academic and industry reports) where households could trade energy tokens. While full details aren't widely published, such pilots align with Uganda's needs—providing transparent ledgers for energy credits in communities where trust might be an issue and where the utility isn't involved. Additionally, Uganda's universities and innovation hubs have looked into IoT smart metering for villages, which is a precursor to P2P trading.</li>
+          <li><strong>Virtual Aggregation:</strong> Uganda has substantial renewable resources (hydro, solar) and a few large consumers (like copper smelting, cement, etc.). The concept of virtual aggregation at the national level is not yet a discussion because Uganda first needs to address excess supply (some existing IPPs are underutilized due to demand shortfall) and improve its main grid reliability. That said, at a smaller scale, Uganda's numerous solar home system companies (e.g., M-KOPA, Fenix) have interconnected some of their systems via GSM for monitoring; conceivably, in the future, those could be networked into VPPs that provide grid services if Uganda's grid opens to it. For example, thousands of home batteries could help balance the grid frequency if aggregated—an idea that has been tried in pilot form in other countries.</li>
+          <li><strong>Receptiveness to Private Trading:</strong> The Ugandan government has historically been open to private generation (IPP hydro dams and solar plants under the GET FiT program) but less so to private retailing. However, the Electricity Act was amended in 2022 to, among other things, prepare for the end of Umeme's concession and possibly a new distribution regime. It's possible Uganda might move to a more decentralized distribution model with multiple smaller concessions or cooperatives. If that happens, there is room for competition or at least comparative choice—for instance, an industrial park might be allowed to buy power directly from an IPP through a "wheeling" arrangement on the transmission grid (similar to eligible customer concept). As of now, these arrangements are rare. One example: Large consumers like Sugar corporations who generate their own power from biomass have been allowed to feed excess into the grid under certain conditions.</li>
+          <li><strong>Blockchain and Payment Innovations:</strong> Uganda has one of the world's first Mobile Money electricity meters (Umeme allows bill payment via mobile, and some pilots let solar home users pay via mobile credits). Building on that, decentralized identity and payment rails (like DID for energy accounts, crypto payments for solar credits) could find fertile ground. A trustless system might alleviate issues such as power theft and billing fraud which plague the utility—if every kWh is tokenized and tracked, it's harder to steal power undetected. This is theoretical at this stage, but Ugandan regulators have engaged in regional discussions on innovation (through associations like ERA's participation in African forum of regulators).</li>
+        </ul>
+        <p>Uganda's readiness summary: In the next 2–3 years, Uganda is likely to remain focused on expanding access and managing its existing IPP contracts rather than establishing competitive markets. However, on the margins, it will continue to support off-grid and edge-of-grid innovations. This means opportunities for micro-level energy trading: e.g., a village mini-grid where users trade credits via a blockchain app, or a cluster of cell-tower solar-battery systems managed as a VPP to stabilize local supply. If these prove successful, Uganda could scale them up or integrate them when the main grid reaches those areas. For foreign investors or startups, working with Uganda's Rural Electrification Program and ERA to pilot decentralized platform solutions in underserved areas might be the best entry. While Uganda might not have an energy exchange by 2027, it could very well host one of the continent's first transactive energy communities leveraging Web3, given the groundwork being laid by firms like Lightency and others.</p>
+        <h2 class="section-title">Comparison Table</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr><th>Country</th><th>Regulatory Moves</th><th>Pilot Activities</th><th>Readiness</th></tr>
+          </thead>
+          <tbody>
+            <tr class="country-sa"><td>South Africa</td><td>ERA Act, NTCSA, municipal wheeling, trader licenses</td><td>Wheeling pilots, VPPs, blockchain trials</td><td class="readiness-high">High</td></tr>
+            <tr class="country-ke"><td>Kenya</td><td>Draft open access regs, net metering, wheeling</td><td>Mini-grids, P2P/blockchain pilots</td><td class="readiness-moderate">Moderate-High</td></tr>
+            <tr class="country-ng"><td>Nigeria</td><td>Electricity Act, state-level markets, eligible customer</td><td>Blockchain microgrids, VPP pilots</td><td class="readiness-moderate">Moderate</td></tr>
+            <tr class="country-gh"><td>Ghana</td><td>Net metering, distributed gen guidelines</td><td>Solar net metering, mini-grids</td><td class="readiness-low">Low-Moderate</td></tr>
+            <tr class="country-ug"><td>Uganda</td><td>Off-grid policy, mini-grid support</td><td>Mini-grids, blockchain pilots</td><td class="readiness-low">Low (grid) / Moderate (off-grid)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- Web3 Technologies -->
+    <section id="web3" class="chapter">
+      <h1 class="chapter-title">Web3 Technologies as Enablers in Decentralized Energy</h1>
+      <div class="section">
+        <p>Web3 technologies—blockchain, smart contracts, and tokenization—are increasingly used to enable transparent, trustless energy trading and settlement. Blockchain-based platforms can automate settlement, track renewable energy certificates (RECs), and facilitate peer-to-peer trading, especially in markets with weak intermediaries. Pilots in South Africa, Kenya, and Nigeria demonstrate the potential for Web3 to streamline transactions, reduce fraud, and open new financing models (e.g., energy tokenization, crowdfunding for mini-grids).</p>
+        <ul>
+          <li><strong>Blockchain:</strong> Used for transparent transaction records, automated settlement, and REC tracking.</li>
+          <li><strong>Smart Contracts:</strong> Enable automated, trustless execution of energy trades and payments.</li>
+          <li><strong>Tokenization:</strong> Allows fractional ownership and trading of energy assets, and new financing models for renewables.</li>
+        </ul>
+        <p>As regulatory frameworks mature, Web3 is expected to play a growing role in Africa's decentralized energy future.</p>
+      </div>
+    </section>
+    <!-- Conclusion -->
+    <section id="conclusion" class="chapter">
+      <h1 class="chapter-title">Conclusion: Strategic Outlook for Investors and Startups</h1>
+      <div class="section">
+        <p>Decentralized energy models are rapidly gaining ground in Africa, led by South Africa's regulatory reforms and followed by innovative pilots in Kenya, Nigeria, Ghana, and Uganda. The convergence of enabling policy, urgent market demand, and technological innovation—especially Web3—creates fertile ground for new business models. Investors and startups should focus on scalable platforms, robust data infrastructure, and partnerships with early-adopter corporates and municipalities. The next 2–3 years will be critical for proving commercial viability and scaling successful models across the continent.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+          // Close mobile menu if open
+          sidebar.classList.remove('active');
+        }
+      });
+    });
+
+    // Active link highlighting
+    const sections = document.querySelectorAll('.chapter');
+    const navLinks = document.querySelectorAll('.sidebar-nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Add navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    // Chart.js placeholder: add charts as needed for data sections
+  </script>
+</body>
+</html>
