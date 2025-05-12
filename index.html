@@ -700,6 +700,16 @@
                 max-height: 300px;
             }
         }
+
+        .substack-embed-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        #custom-substack-embed {
+            width: 100%;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
@@ -840,7 +850,24 @@
                 <h3 class="subscribe-title">Stay Updated</h3>
                 <p class="subscribe-description">Subscribe to our newsletter to receive the latest updates on our projects and whitepapers</p>
                 
-<iframe src="https://hypocotyl.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+<div class="substack-embed-container">
+  <div id="custom-substack-embed"></div>
+</div>
+<script>
+  window.CustomSubstackWidget = {
+    substackUrl: "hypocotyl.substack.com",
+    placeholder: "example@gmail.com",
+    buttonText: "Subscribe",
+    theme: "custom",
+    colors: {
+      primary: "#000000",
+      input: "#FFFFFF",
+      email: "#00E676",
+      text: "#FFFFFF",
+    },
+  };
+</script>
+<script src="https://substackapi.com/widget.js" async></script>
             </div>
         </div>
     </section>
