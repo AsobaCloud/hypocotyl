@@ -181,23 +181,26 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .hero h1 {
-			font-size: 6rem;
-			letter-spacing: 0.5rem;
-			font-weight: 700;
-			margin-bottom: 1rem;
-			background: linear-gradient(to right, var(--primary-green) 0%, var(--primary-blue) 100%);
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
-			color: transparent;
-			
-			/* No padding */
-			text-transform: uppercase;
-			
-			/* Add display property to control sizing */
-			display: inline-block;
-		}
+        .hero h1, .feature-title {
+            color: #00E676;
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            white-space: nowrap;
+            overflow: visible;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+        }
+        .hero h1 span, .feature-title span {
+            background: linear-gradient(to right, #00E676, #2979FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            display: inline;
+        }
         
         .hero p {
             font-size: 1.5rem;
@@ -750,7 +753,7 @@
         
         <div class="hero-grid">
             <div class="hero-content">
-			<h1>HYPOCOTYL</h1>
+			<h1><span>HYPOCOTYL</span></h1>
 			<p>Growth from legacy roots to decentralized futures</p>
 		</div>
             <div class="hero-right"></div>

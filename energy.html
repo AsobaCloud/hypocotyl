@@ -247,16 +247,25 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .chapter-title {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--light-text);
+    .chapter-title, .section-title, .subsection-title {
+      color: #00E676;
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      white-space: nowrap;
+      overflow: visible;
       font-weight: 700;
       letter-spacing: 1px;
-      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      background: none;
+      padding: 0;
+      margin: 0;
+      display: block;
+    }
+    .chapter-title span, .section-title span, .subsection-title span {
+      background: linear-gradient(to right, #00E676, #2979FF);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      -webkit-text-fill-color: transparent;
+      display: inline;
     }
     .section {
       margin-bottom: 2rem;
@@ -631,7 +640,7 @@
     <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
     <!-- Introduction -->
     <section id="introduction" class="chapter">
-      <h1 class="chapter-title">Decentralized Energy in Africa: Emerging Business Models (2025–2027 Outlook)</h1>
+      <h1 class="chapter-title"><span>Decentralized Energy in Africa: Emerging Business Models (2025–2027 Outlook)</span></h1>
       <div class="section">
         <h2 class="section-title">Introduction</h2>
         <p>In Africa's evolving power sector, decentralized energy models are gaining momentum. South Africa is spearheading market reforms to enable competitive electricity trading, creating fertile ground for new business models like energy trading platforms and virtual power plants (VPPs). This report provides a strategic foresight view (2025–2027) of the most commercially viable models in the African decentralized energy sector, focusing especially on South Africa's regulatory shifts and how similar models could scale to other countries (Kenya, Nigeria, Ghana, Uganda). We analyze multi-buyer/multi-seller market platforms, VPP aggregators, peer-to-peer (P2P) trading frameworks, and the role of Web3 technologies (blockchain, smart contracts, decentralized finance) in enhancing these models. Key commercial factors – revenue streams, infrastructure needs, financing, and constraints – are highlighted, alongside country-specific regulatory receptiveness and pilot programs.</p>
