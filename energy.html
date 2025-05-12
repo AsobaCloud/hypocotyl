@@ -105,20 +105,37 @@
       padding: 0 1rem;
     }
     .navbar-logo {
-      font-size: 1.5rem;
+      color: #00E676;
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      white-space: nowrap;
+      overflow: visible;
       font-weight: 700;
       letter-spacing: 1px;
-      background: linear-gradient(to right, var(--primary-green), var(--primary-blue));
+      text-decoration: none;
+      background: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+    .navbar-logo span {
+      background: linear-gradient(to right, #00E676, #2979FF);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-decoration: none;
-      white-space: nowrap;
-      overflow: visible;
-      border: none;
-      background-color: transparent;
-      padding: 0;
-      margin: 0;
+      -webkit-text-fill-color: transparent;
+      display: inline;
+    }
+    @media (max-width: 768px) {
+      .navbar-logo {
+        max-width: none !important;
+        height: auto !important;
+        overflow: visible !important;
+        white-space: nowrap !important;
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+      }
     }
     .navbar-links {
       display: flex;
@@ -573,7 +590,7 @@
   <!-- Top Navigation -->
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.html" class="navbar-logo">HYPOCOTYL</a>
+      <a href="index.html" class="navbar-logo"><span>HYPOCOTYL</span></a>
       <div class="navbar-links">
         <a href="index.html" class="navbar-link">Home</a>
         <div class="navbar-link navbar-dropdown">
