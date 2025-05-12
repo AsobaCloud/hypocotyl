@@ -300,10 +300,60 @@
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 999;
+        width: 100%;
+        max-width: none;
       }
+      
       .sidebar.active {
         transform: translateX(0);
       }
+
+      .sidebar-nav {
+        padding: 1rem;
+      }
+
+      .sidebar-nav-link {
+        padding: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .navbar-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--dark-card);
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 998;
+      }
+      
+      .navbar-links.active {
+        display: flex;
+      }
+
+      .navbar-dropdown .dropdown-content {
+        position: static;
+        min-width: unset;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
+        margin-top: 0.5rem;
+      }
+      
+      .navbar-dropdown .dropdown-content a {
+        padding: 0.75rem 1rem;
+        border-bottom: none;
+      }
+      
+      .navbar-dropdown .dropdown-content a:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
       .main-content {
         margin-left: 0;
         padding: 1rem;
@@ -323,23 +373,6 @@
       }
       .section-title {
         font-size: 1.5rem;
-      }
-      .navbar-links {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: var(--dark-card);
-        padding: 2rem;
-        gap: 1.5rem;
-        text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 998;
-      }
-      .navbar-links.active {
-        display: flex;
       }
       .navbar-logo {
         font-size: 1.2rem;
@@ -534,9 +567,14 @@
 
   <!-- Sidebar Navigation -->
   <aside class="sidebar">
-    <div class="sidebar-header"></div>
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-logo">HYPOCOTYL</a>
+    </div>
     <nav class="sidebar-nav">
       <ul>
+        <li class="sidebar-nav-item"><a href="index.html" class="sidebar-nav-link">Home</a></li>
+        <li class="sidebar-nav-item"><a href="web3.html" class="sidebar-nav-link">Web3 Whitepaper</a></li>
+        <li class="sidebar-nav-item"><a href="#contact" class="sidebar-nav-link">Contact</a></li>
         <li class="sidebar-nav-item"><a href="#introduction" class="sidebar-nav-link">Introduction</a></li>
         <li class="sidebar-nav-item"><a href="#southafrica" class="sidebar-nav-link">South Africa</a></li>
         <li class="sidebar-nav-item"><a href="#platforms" class="sidebar-nav-link">Trading Platforms & VPPs</a></li>
